@@ -63,3 +63,7 @@ func (num *Int) ShouldBe(n ...int) {
 func (num *Int) String() string {
 	return strconv.Itoa(num.n)
 }
+
+func (num *Int) Int() int {
+	return num.n
+}
