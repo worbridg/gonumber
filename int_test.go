@@ -68,8 +68,8 @@ func TestInt_Add(t *testing.T) {
 	if n.IsNot(3) {
 		t.Errorf("n must be 3")
 	}
-	n.ShouldBe(1, 2, 3)
-	if err := n.Add(1); err == nil {
+	n.ShouldBe(1, 2, 3, 6)
+	if err := n.Add(2); err == nil {
 		t.Error(err)
 	}
 }

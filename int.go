@@ -77,6 +77,6 @@ func (num *Int) Add(n int) error {
 	if !num.isAllowed() {
 		return fmt.Errorf("unexpected value")
 	}
-	num.n = n
+	num.n = num.n + n
 	return nil
 }
