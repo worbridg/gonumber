@@ -28,20 +28,25 @@ func (num *Int) Increment() error {
 	if num.next != 0 && num.next != num.n+1 {
 		return fmt.Errorf("next value must be %d", num.next)
 	}
-
-	if len(num.allowedN) > 0 {
-		for i := 0; i < len(num.allowedN); i++ {
-			if num.allowedN[i] == num.n+1 {
-				goto INCREMENT
-			}
-		}
+	if !num.isAllowed() {
 		return fmt.Errorf("unexpected value")
 	}
-INCREMENT:
 	num.prev = num.n
 	num.next = 0
 	num.n++
 	return nil
+}
+
+func (num Int) isAllowed() bool {
+	if len(num.allowedN) > 0 {
+		for i := 0; i < len(num.allowedN); i++ {
+			if num.allowedN[i] == num.n+1 {
+				return true
+			}
+		}
+		return false
+	}
+	return true
 }
 
 func (num Int) Was(n int) bool {
@@ -69,15 +74,9 @@ func (num *Int) Int() int {
 }
 
 func (num *Int) Add(n int) error {
-	if len(num.allowedN) > 0 {
-		for i := 0; i < len(num.allowedN); i++ {
-			if num.allowedN[i] == num.n+1 {
-				goto ADD
-			}
-		}
+	if !num.isAllowed() {
 		return fmt.Errorf("unexpected value")
 	}
-ADD:
 	num.n = n
 	return nil
 }
