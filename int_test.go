@@ -25,3 +25,11 @@ func TestInt_Increment(t *testing.T) {
 		t.Errorf("n must be 1")
 	}
 }
+
+func TestInt_Was(t *testing.T) {
+	n := NewInt(0)
+	n.Increment()
+	if n.Was(1) {
+		t.Errorf("previous n must be 0")
+	}
+}
