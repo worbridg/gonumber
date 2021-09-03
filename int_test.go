@@ -40,6 +40,10 @@ func TestInt_Increment(t *testing.T) {
 	if err := n.Increment(); err == nil {
 		t.Error(err)
 	}
+	n.ShouldBe(3, 4)
+	if err := n.Increment(); err != nil {
+		t.Error(err)
+	}
 }
 
 func TestInt_Was(t *testing.T) {
