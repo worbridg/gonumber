@@ -28,7 +28,7 @@ func (num *Int) Increment() error {
 	if num.next != 0 && num.next != num.n+1 {
 		return fmt.Errorf("next value must be %d", num.next)
 	}
-	if !num.isAllowed() {
+	if !num.isAllowed(num.n + 1) {
 		return fmt.Errorf("unexpected value")
 	}
 	num.prev = num.n
@@ -37,10 +37,10 @@ func (num *Int) Increment() error {
 	return nil
 }
 
-func (num Int) isAllowed() bool {
+func (num Int) isAllowed(n int) bool {
 	if len(num.allowedN) > 0 {
 		for i := 0; i < len(num.allowedN); i++ {
-			if num.allowedN[i] == num.n+1 {
+			if num.allowedN[i] == n {
 				return true
 			}
 		}
@@ -74,9 +74,17 @@ func (num *Int) Int() int {
 }
 
 func (num *Int) Add(n int) error {
-	if !num.isAllowed() {
+	if !num.isAllowed(num.n + n) {
 		return fmt.Errorf("unexpected value")
 	}
 	num.n = num.n + n
+	return nil
+}
+
+func (num *Int) Sub(n int) error {
+	if !num.isAllowed(num.n - n) {
+		return fmt.Errorf("unexpected value")
+	}
+	num.n = num.n - n
 	return nil
 }

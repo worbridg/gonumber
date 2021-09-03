@@ -73,3 +73,14 @@ func TestInt_Add(t *testing.T) {
 		t.Error(err)
 	}
 }
+func TestInt_Sub(t *testing.T) {
+	n := NewInt(0)
+	n.Sub(3)
+	if n.IsNot(-3) {
+		t.Errorf("n must be -3")
+	}
+	n.ShouldBe(-1, -2, -3)
+	if err := n.Sub(2); err == nil {
+		t.Error(err)
+	}
+}
