@@ -1,6 +1,8 @@
 package rtype
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestInt_Is(t *testing.T) {
 	n := NewInt(3)
@@ -13,5 +15,13 @@ func TestInt_IsNot(t *testing.T) {
 	n := NewInt(3)
 	if n.IsNot(3) {
 		t.Errorf("n must be 3")
+	}
+}
+
+func TestInt_Increment(t *testing.T) {
+	n := NewInt(0)
+	n.Increment()
+	if n.IsNot(1) {
+		t.Errorf("n must be 1")
 	}
 }

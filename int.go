@@ -13,3 +13,7 @@ func (i Int) Is(n int) bool {
 func (i Int) IsNot(n int) bool {
 	return int(i) != n
 }
+
+func (i *Int) Increment() {
+	(*i)++
+}
