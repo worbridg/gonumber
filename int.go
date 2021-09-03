@@ -5,6 +5,7 @@ import (
 )
 
 type Int struct {
+	a []int
 	n int
 	p int
 	q int
@@ -26,6 +27,16 @@ func (i *Int) Increment() error {
 	if i.q != 0 && i.q != i.n+1 {
 		return fmt.Errorf("next value must be %d", i.q)
 	}
+
+	if len(i.a) > 0 {
+		for a := 0; a < len(i.a); a++ {
+			if i.a[a] == i.n+1 {
+				goto INCREMENT
+			}
+		}
+		return fmt.Errorf("unexpected value")
+	}
+INCREMENT:
 	i.p = i.n
 	i.q = 0
 	i.n++
@@ -42,4 +53,8 @@ func (i Int) WasNot(n int) bool {
 
 func (i *Int) WillBe(n int) {
 	i.q = n
+}
+
+func (i *Int) ShouldBe(n ...int) {
+	i.a = n
 }
