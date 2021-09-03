@@ -25,3 +25,7 @@ func (i *Int) Increment() {
 func (i Int) Was(n int) bool {
 	return i.p == n
 }
+
+func (i Int) WasNot(n int) bool {
+	return i.p != n
+}
