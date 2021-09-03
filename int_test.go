@@ -24,6 +24,14 @@ func TestInt_Increment(t *testing.T) {
 	if n.IsNot(1) {
 		t.Errorf("n must be 1")
 	}
+	n.WillBe(2)
+	if err := n.Increment(); err != nil {
+		t.Error(err)
+	}
+	n.WillBe(4)
+	if err := n.Increment(); err == nil {
+		t.Error(err)
+	}
 }
 
 func TestInt_Was(t *testing.T) {
