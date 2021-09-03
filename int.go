@@ -9,3 +9,7 @@ func NewInt(n int) Int {
 func (i Int) Is(n int) bool {
 	return int(i) == n
 }
+
+func (i Int) IsNot(n int) bool {
+	return int(i) != n
+}
