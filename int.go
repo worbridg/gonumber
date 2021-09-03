@@ -5,7 +5,7 @@ import (
 	"strconv"
 )
 
-// Int is a wrapper of int.
+// Int is a wrapper of int and provide you code readability in your codes.
 type Int struct {
 	// allowedN holds what numerics must be in `n`.
 	allowedN []int
