@@ -5,56 +5,56 @@ import (
 )
 
 type Int struct {
-	a []int
-	n int
-	p int
-	q int
+	allowedN []int
+	n        int
+	prev     int
+	next     int
 }
 
 func NewInt(n int) Int {
 	return Int{n: n}
 }
 
-func (i Int) Is(n int) bool {
-	return i.n == n
+func (num Int) Is(n int) bool {
+	return num.n == n
 }
 
-func (i Int) IsNot(n int) bool {
-	return i.n != n
+func (num Int) IsNot(n int) bool {
+	return num.n != n
 }
 
-func (i *Int) Increment() error {
-	if i.q != 0 && i.q != i.n+1 {
-		return fmt.Errorf("next value must be %d", i.q)
+func (num *Int) Increment() error {
+	if num.next != 0 && num.next != num.n+1 {
+		return fmt.Errorf("next value must be %d", num.next)
 	}
 
-	if len(i.a) > 0 {
-		for a := 0; a < len(i.a); a++ {
-			if i.a[a] == i.n+1 {
+	if len(num.allowedN) > 0 {
+		for i := 0; i < len(num.allowedN); i++ {
+			if num.allowedN[i] == num.n+1 {
 				goto INCREMENT
 			}
 		}
 		return fmt.Errorf("unexpected value")
 	}
 INCREMENT:
-	i.p = i.n
-	i.q = 0
-	i.n++
+	num.prev = num.n
+	num.next = 0
+	num.n++
 	return nil
 }
 
-func (i Int) Was(n int) bool {
-	return i.p == n
+func (num Int) Was(n int) bool {
+	return num.prev == n
 }
 
-func (i Int) WasNot(n int) bool {
-	return i.p != n
+func (num Int) WasNot(n int) bool {
+	return num.prev != n
 }
 
-func (i *Int) WillBe(n int) {
-	i.q = n
+func (num *Int) WillBe(n int) {
+	num.next = n
 }
 
-func (i *Int) ShouldBe(n ...int) {
-	i.a = n
+func (num *Int) ShouldBe(n ...int) {
+	num.allowedN = n
 }
