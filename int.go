@@ -2,6 +2,7 @@ package rtype
 
 import (
 	"fmt"
+	"strconv"
 )
 
 type Int struct {
@@ -57,4 +58,8 @@ func (num *Int) WillBe(n int) {
 
 func (num *Int) ShouldBe(n ...int) {
 	num.allowedN = n
+}
+
+func (num *Int) String() string {
+	return strconv.Itoa(num.n)
 }
