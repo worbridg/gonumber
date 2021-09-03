@@ -67,3 +67,17 @@ func (num *Int) String() string {
 func (num *Int) Int() int {
 	return num.n
 }
+
+func (num *Int) Add(n int) error {
+	if len(num.allowedN) > 0 {
+		for i := 0; i < len(num.allowedN); i++ {
+			if num.allowedN[i] == num.n+1 {
+				goto ADD
+			}
+		}
+		return fmt.Errorf("unexpected value")
+	}
+ADD:
+	num.n = n
+	return nil
+}

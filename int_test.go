@@ -61,3 +61,15 @@ func TestInt_WasNot(t *testing.T) {
 		t.Errorf("previous n must be 0")
 	}
 }
+
+func TestInt_Add(t *testing.T) {
+	n := NewInt(0)
+	n.Add(3)
+	if n.IsNot(3) {
+		t.Errorf("n must be 3")
+	}
+	n.ShouldBe(1, 2, 3)
+	if err := n.Add(1); err == nil {
+		t.Error(err)
+	}
+}
