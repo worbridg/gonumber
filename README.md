@@ -1,3 +1,5 @@
+[![ci](https://github.com/worbridg/rtype/actions/workflows/go.yml/badge.svg)](https://github.com/worbridg/rtype/actions)
+
 # rtype
 
 Let's improve code readability!
