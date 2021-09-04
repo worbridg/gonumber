@@ -94,6 +94,7 @@ func (number *Number) Add(n int) error {
 	if !number.isAllowed(number.n + n) {
 		return fmt.Errorf("unexpected value")
 	}
+	number.prev = number.n
 	number.n = number.n + n
 	return nil
 }
@@ -103,6 +104,7 @@ func (number *Number) Sub(n int) error {
 	if !number.isAllowed(number.n - n) {
 		return fmt.Errorf("unexpected value")
 	}
+	number.prev = number.n
 	number.n = number.n - n
 	return nil
 }
