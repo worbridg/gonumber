@@ -1,3 +1,3 @@
-module github.com/worbridg/rtype
+module github.com/worbridg/gonumber
 
 go 1.17

@@ -1,4 +1,4 @@
-package rtype
+package gonumber
 
 import (
 	"testing"

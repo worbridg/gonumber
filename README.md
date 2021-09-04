@@ -1,6 +1,6 @@
-[![ci](https://github.com/worbridg/rtype/actions/workflows/go.yml/badge.svg)](https://github.com/worbridg/rtype/actions)
+[![ci](https://github.com/worbridg/gonumber/actions/workflows/go.yml/badge.svg)](https://github.com/worbridg/gonumber/actions)
 
-# rtype
+# gonumber
 
 Let's improve code readability!
 
@@ -10,11 +10,11 @@ package main
 import (
 	"fmt"
 
-	"github.com/worbridg/rtype"
+	"github.com/worbridg/gonumber"
 )
 
 func main() {
-	number := rtype.NewInt(0)
+	number := gonumber.NewInt(0)
 	if number.Is(0) {
 		number.Increment()
 	}
@@ -24,7 +24,7 @@ func main() {
 		// Output: next value must be 3
 	}
 
-	number = rtype.NewInt(2)
+	number = gonumber.NewInt(2)
 	number.ShouldBe(1, 2, 3)
 	if err := number.Add(2); err != nil {
 		fmt.Println(err)
