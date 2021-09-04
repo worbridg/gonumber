@@ -75,8 +75,14 @@ func (number *Number) WillBe(n int) {
 }
 
 // ShouldBe restricts values that an user can set. See Also Int.Increment.
-func (number *Number) ShouldBe(n ...int) {
-	number.allowedN = n
+func (number *Number) ShouldBe(n ...int) (*Number, error) {
+	for i := 0; i < len(n); i++ {
+		if number.n.(int) == n[i] {
+			number.allowedN = n
+			return number, nil
+		}
+	}
+	return nil, fmt.Errorf("number should be %v", n)
 }
 
 // Strings returns a numeric string.
