@@ -9,13 +9,13 @@ import (
 type Number struct {
 	// allowedN holds what numerics must be in `n`.
 	allowedN []int
-	n        int
+	n        interface{}
 	prev     int
 	next     int
 }
 
 // NewInt returns new Number.
-func NewInt(n int) Number {
+func New(n interface{}) Number {
 	return Number{n: n}
 }
 
@@ -34,15 +34,15 @@ func (number Number) IsNot(n int) bool {
 // if not, returns an error. and more if a value to n is restricted
 // by ShouldBe(), it also must be obey. cleared both, it return nil.
 func (number *Number) Increment() error {
-	if number.next != 0 && number.next != number.n+1 {
+	if number.next != 0 && number.next != number.n.(int)+1 {
 		return fmt.Errorf("next value must be %d", number.next)
 	}
-	if !number.isAllowed(number.n + 1) {
+	if !number.isAllowed(number.n.(int) + 1) {
 		return fmt.Errorf("unexpected value")
 	}
-	number.prev = number.n
+	number.prev = number.n.(int)
 	number.next = 0
-	number.n++
+	number.n = number.n.(int) + 1
 	return nil
 }
 
@@ -81,30 +81,30 @@ func (number *Number) ShouldBe(n ...int) {
 
 // Strings returns a numeric string.
 func (number *Number) String() string {
-	return strconv.Itoa(number.n)
+	return strconv.Itoa(number.n.(int))
 }
 
 // Strings returns int type n.
 func (number *Number) Number() int {
-	return number.n
+	return number.n.(int)
 }
 
 // Add plus n to n in this. See also Number.Increment.
 func (number *Number) Add(n int) error {
-	if !number.isAllowed(number.n + n) {
+	if !number.isAllowed(number.n.(int) + n) {
 		return fmt.Errorf("unexpected value")
 	}
-	number.prev = number.n
-	number.n = number.n + n
+	number.prev = number.n.(int)
+	number.n = number.n.(int) + n
 	return nil
 }
 
 // Sub subtracts n from n in this. See also Int.Increment.
 func (number *Number) Sub(n int) error {
-	if !number.isAllowed(number.n - n) {
+	if !number.isAllowed(number.n.(int) - n) {
 		return fmt.Errorf("unexpected value")
 	}
-	number.prev = number.n
-	number.n = number.n - n
+	number.prev = number.n.(int)
+	number.n = number.n.(int) - n
 	return nil
 }
