@@ -82,7 +82,7 @@ func (number *Number) ShouldBe(n ...int) (*Number, error) {
 			return number, nil
 		}
 	}
-	return nil, fmt.Errorf("number should be %v", n)
+	return nil, fmt.Errorf("the number should be one of %v", n)
 }
 
 // Strings returns a numeric string.
