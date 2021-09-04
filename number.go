@@ -15,17 +15,17 @@ type Number struct {
 }
 
 // NewInt returns new Number.
-func New(n interface{}) Number {
-	return Number{n: n}
+func New(n interface{}) *Number {
+	return &Number{n: n}
 }
 
 // Is is equal to "=="
-func (number Number) Is(n int) bool {
+func (number *Number) Is(n int) bool {
 	return number.n == n
 }
 
 // IsNot is equal to "!="
-func (number Number) IsNot(n int) bool {
+func (number *Number) IsNot(n int) bool {
 	return number.n != n
 }
 
@@ -47,7 +47,7 @@ func (number *Number) Increment() error {
 }
 
 // isAllowed always return true if allowedN isn't set.
-func (number Number) isAllowed(n int) bool {
+func (number *Number) isAllowed(n int) bool {
 	if len(number.allowedN) > 0 {
 		for i := 0; i < len(number.allowedN); i++ {
 			if number.allowedN[i] == n {
@@ -60,12 +60,12 @@ func (number Number) isAllowed(n int) bool {
 }
 
 // Was checks if last value is equal to n.
-func (number Number) Was(n int) bool {
+func (number *Number) Was(n int) bool {
 	return number.prev == n
 }
 
 // WasNot checks if last value isn't equal to n.
-func (number Number) WasNot(n int) bool {
+func (number *Number) WasNot(n int) bool {
 	return number.prev != n
 }
 
