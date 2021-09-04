@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	number := gonumber.NewInt(0)
+	number := gonumber.New(0)
 	if number.Is(0) {
 		number.Increment()
 	}
@@ -24,13 +24,14 @@ func main() {
 		// Output: next value must be 3
 	}
 
-	number = gonumber.NewInt(2)
+	number = gonumber.New(2)
 	number.ShouldBe(1, 2, 3)
 	if err := number.Add(2); err != nil {
 		fmt.Println(err)
 		// unexpected value
 	}
 }
+
 ```
 
 # LICENSE
