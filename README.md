@@ -43,8 +43,11 @@ func main() {
 		it.WillBe(1)
 		it.ChangeTo(1)
 	}
-	if all(numbers).Are(1) {
+	if numbers.Are(1, 1, 1) {
 		fmt.Println("they are same")
+	}
+	if all(numbers).Are(1) {
+		fmt.Println("they also are same")
 	}
 }
 
