@@ -172,3 +172,15 @@ func (number *Number) IsNegative() bool {
 func (number *Number) Between(min, max int) bool {
 	return number.n >= min && number.n <= max
 }
+
+// UpTo increments the number up to n and returns numbers.
+func (number *Number) UpTo(n int) Numbers {
+	if number.IsGreaterThan(n) {
+		return Numbers{number}
+	}
+	numbers := make(Numbers, n-number.n+1)
+	for i := number.n; i <= n; i++ {
+		numbers[i-number.n] = NewInt(i)
+	}
+	return numbers
+}

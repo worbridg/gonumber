@@ -159,3 +159,15 @@ func TestNumbers_AreSame(t *testing.T) {
 		})
 	}
 }
+
+func TestNumber_UpTo(t *testing.T) {
+	number := NewInt(3)
+	numbers := number.UpTo(5)
+	if numbers.AreNot(3, 4, 5) {
+		t.Errorf("3 up to 5")
+	}
+	numbers = number.UpTo(2)
+	if numbers.AreNot(3) {
+		t.Errorf("numbers must be 3")
+	}
+}
