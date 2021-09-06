@@ -97,6 +97,9 @@ func (number *Number) Number() int {
 
 // Add plus n to n in this. See also Number.Increment.
 func (number *Number) Add(n int) error {
+	if number.next != 0 && number.next != number.n.(int)+n {
+		return fmt.Errorf("next value is expected to be %d", number.next)
+	}
 	if !number.isAllowed(number.n.(int) + n) {
 		return fmt.Errorf("unexpected value")
 	}

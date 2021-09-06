@@ -72,6 +72,11 @@ func TestInt_Add(t *testing.T) {
 	if err := n.Add(2); err == nil {
 		t.Error(err)
 	}
+	n = New(0)
+	n.WillBe(3)
+	if err := n.Add(2); err == nil {
+		t.Error(err)
+	}
 }
 func TestInt_Sub(t *testing.T) {
 	n := New(0)
