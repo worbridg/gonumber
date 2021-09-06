@@ -20,6 +20,10 @@ func (numbers Numbers) Are(n ...int) bool {
 	return true
 }
 
+func (numbers Numbers) AreNot(n ...int) bool {
+	return !numbers.Are(n...)
+}
+
 // Number is a wrapper of int and provide you code readability in your codes.
 type Number struct {
 	// allowedN holds what numerics must be in `n`.
