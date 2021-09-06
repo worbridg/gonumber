@@ -34,7 +34,7 @@ func (number *Number) IsNot(n int) bool {
 // if not, returns an error. and more if a value to n is restricted
 // by ShouldBe(), it also must be obey. cleared both, it return nil.
 func (number *Number) Increment() error {
-	if number.next != 0 && number.next != number.n.(int)+1 {
+	if !number.canUpdate(number.n.(int) + 1) {
 		return fmt.Errorf("next value must be %d", number.next)
 	}
 	if !number.isAllowed(number.n.(int) + 1) {
@@ -95,9 +95,13 @@ func (number *Number) Number() int {
 	return number.n.(int)
 }
 
+func (number *Number) canUpdate(n int) bool {
+	return number.next == 0 || number.next == n
+}
+
 // Add plus n to n in this. See also Number.Increment.
 func (number *Number) Add(n int) error {
-	if number.next != 0 && number.next != number.n.(int)+n {
+	if !number.canUpdate(number.n.(int) + n) {
 		return fmt.Errorf("next value is expected to be %d", number.next)
 	}
 	if !number.isAllowed(number.n.(int) + n) {
