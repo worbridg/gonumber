@@ -29,13 +29,13 @@ func (s *AllNumbersState) Are(n int) bool {
 	return true
 }
 
-func (s *OneOfNumbersState) IsZero() bool {
+func (s *OneOfNumbersState) IsZero() (*Number, bool) {
 	for i := 0; i < len(s.numbers); i++ {
 		if s.numbers[i].IsZero() {
-			return true
+			return s.numbers[i], true
 		}
 	}
-	return false
+	return nil, false
 }
 
 func (numbers Numbers) Are(n ...int) bool {

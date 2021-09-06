@@ -13,8 +13,12 @@ import (
 	"github.com/worbridg/gonumber"
 )
 
-func all(numbers gonumber.Numbers) *gonumber.NumbersState {
+func all(numbers gonumber.Numbers) *gonumber.AllNumbersState {
 	return gonumber.All(numbers)
+}
+
+func oneOf(numbers gonumber.Numbers) *gonumber.OneOfNumbersState {
+	return gonumber.OneOf(numbers)
 }
 
 func main() {
@@ -34,7 +38,11 @@ func main() {
 		// unexpected value
 	}
 
-	numbers := gonumber.Numbers{gonumber.New(1), gonumber.New(1)}
+	numbers := gonumber.Numbers{gonumber.New(1), gonumber.New(1), gonumber.New(0)}
+	if it, exist := oneOf(numbers).IsZero(); exist {
+		it.WillBe(1)
+		it.ChangeTo(1)
+	}
 	if all(numbers).Are(1) {
 		fmt.Println("they are same")
 	}

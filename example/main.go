@@ -31,13 +31,12 @@ func main() {
 		// unexpected value
 	}
 
-	numbers := gonumber.Numbers{gonumber.New(1), gonumber.New(1)}
+	numbers := gonumber.Numbers{gonumber.New(1), gonumber.New(1), gonumber.New(0)}
+	if it, exist := oneOf(numbers).IsZero(); exist {
+		it.WillBe(1)
+		it.ChangeTo(1)
+	}
 	if all(numbers).Are(1) {
 		fmt.Println("they are same")
-	}
-
-	numbers = append(numbers, gonumber.New(0))
-	if oneOf(numbers).IsZero() {
-		fmt.Println("0 is including")
 	}
 }
