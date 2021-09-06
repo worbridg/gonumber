@@ -159,3 +159,18 @@ func (number *Number) ChangeTo(n int) error {
 	number.next = 0
 	return nil
 }
+
+// IsGreaterThan evaluates "number > n".
+func (number *Number) IsGreaterThan(n int) bool {
+	return number.n.(int) > n
+}
+
+// IsGreaterThan evaluates "number < n".
+func (number *Number) IsLessThan(n int) bool {
+	return number.n.(int) < n
+}
+
+// IsGreaterThan evaluates "number == n".
+func (number *Number) Equal(n int) bool {
+	return number.n.(int) == n
+}
