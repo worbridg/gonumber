@@ -4,7 +4,7 @@ package gonumber
 type Numbers []*Number
 
 // NumbersState stands for a state of Numbers.
-type NumbersState struct {
+type AllNumbersState struct {
 	numbers Numbers
 }
 
@@ -12,17 +12,17 @@ type OneOfNumbersState struct {
 	numbers Numbers
 }
 
-func All(numbers Numbers) *NumbersState {
-	return &NumbersState{numbers: numbers}
+func All(numbers Numbers) *AllNumbersState {
+	return &AllNumbersState{numbers: numbers}
 }
 
 func OneOf(numbers Numbers) *OneOfNumbersState {
 	return &OneOfNumbersState{numbers: numbers}
 }
 
-func (ns *NumbersState) Are(n int) bool {
-	for i := 0; i < len(ns.numbers); i++ {
-		if ns.numbers[i].n != n {
+func (s *AllNumbersState) Are(n int) bool {
+	for i := 0; i < len(s.numbers); i++ {
+		if s.numbers[i].n != n {
 			return false
 		}
 	}

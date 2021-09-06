@@ -6,7 +6,7 @@ import (
 	"github.com/worbridg/gonumber"
 )
 
-func all(numbers gonumber.Numbers) *gonumber.NumbersState {
+func all(numbers gonumber.Numbers) *gonumber.AllNumbersState {
 	return gonumber.All(numbers)
 }
 
