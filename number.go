@@ -179,3 +179,13 @@ func (number *Number) Equal(n int) bool {
 func (number *Number) Int() int {
 	return number.n
 }
+
+// IsNegative checks if number is positive or not.
+func (number *Number) IsPositive() bool {
+	return number.n > 0
+}
+
+// IsNegative checks if number is negative or not.
+func (number *Number) IsNegative() bool {
+	return number.n < 0
+}
