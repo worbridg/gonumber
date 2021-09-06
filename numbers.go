@@ -76,3 +76,12 @@ func (numbers Numbers) AreSame() bool {
 func (numbers Numbers) AreNotSame() bool {
 	return !numbers.AreSame()
 }
+
+func (numbers Numbers) Have(n int) (*Number, bool) {
+	for i := 0; i < len(numbers); i++ {
+		if numbers[i].Equal(n) {
+			return numbers[i], true
+		}
+	}
+	return nil, false
+}

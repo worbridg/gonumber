@@ -25,3 +25,13 @@ func TestNumbers_OneOf(t *testing.T) {
 		t.Errorf("0 is added")
 	}
 }
+
+func TestNumbers_Have(t *testing.T) {
+	numbers := Numbers{NewInt(1), NewInt(2), NewInt(3)}
+	if _, exist := numbers.Have(2); !exist {
+		t.Errorf("2 must be there")
+	}
+	if _, exist := numbers.Have(4); exist {
+		t.Errorf("4 isn't expected")
+	}
+}
