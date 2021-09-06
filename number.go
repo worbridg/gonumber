@@ -33,6 +33,10 @@ func (numbers Numbers) AreSame() bool {
 	return true
 }
 
+func (numbers Numbers) AreNotSame() bool {
+	return !numbers.AreSame()
+}
+
 // Number is a wrapper of int and provide you code readability in your codes.
 type Number struct {
 	// allowedN holds what numerics must be in `n`.
