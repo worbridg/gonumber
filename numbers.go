@@ -44,6 +44,15 @@ func (s *OneOfNumbersState) IsZero() (*Number, bool) {
 	return nil, false
 }
 
+func (s *OneOfNumbersState) Is(n int) (*Number, bool) {
+	for i := 0; i < len(s.numbers); i++ {
+		if s.numbers[i].Equal(n) {
+			return s.numbers[i], true
+		}
+	}
+	return nil, false
+}
+
 // Are compares numbers to n slice. it returns true if same otherwise false.
 func (numbers Numbers) Are(n ...int) bool {
 	if len(numbers) != len(n) {
