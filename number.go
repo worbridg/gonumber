@@ -109,6 +109,7 @@ func (number *Number) Add(n int) error {
 	}
 	number.prev = number.n.(int)
 	number.n = number.n.(int) + n
+	number.next = 0
 	return nil
 }
 
@@ -119,5 +120,6 @@ func (number *Number) Sub(n int) error {
 	}
 	number.prev = number.n.(int)
 	number.n = number.n.(int) - n
+	number.next = 0
 	return nil
 }
