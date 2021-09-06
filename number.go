@@ -134,6 +134,9 @@ func (number *Number) IsNotZero() bool {
 	return number.n != 0
 }
 
+// ChangeTo changes n to new one. if either WillBe() or ShouldBe() is called
+// before, n is checked if allowed to update it or not. it returns nil if
+// allowed otherwise an error.
 func (number *Number) ChangeTo(n int) error {
 	if !number.canUpdate(number.n.(int) + n) {
 		return fmt.Errorf("next value is expected to be %d", number.next)
