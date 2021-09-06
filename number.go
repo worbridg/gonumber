@@ -6,7 +6,19 @@ import (
 )
 
 // Numbers is a collection of Number.
-type Numbers []Number
+type Numbers []*Number
+
+func (numbers Numbers) Are(n ...int) bool {
+	if len(numbers) != len(n) {
+		return false
+	}
+	for i := 0; i < len(numbers); i++ {
+		if numbers[i].n != n[i] {
+			return false
+		}
+	}
+	return true
+}
 
 // Number is a wrapper of int and provide you code readability in your codes.
 type Number struct {

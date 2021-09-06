@@ -89,3 +89,47 @@ func TestInt_Sub(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestNumbers_Are(t *testing.T) {
+	type args struct {
+		n []int
+	}
+	tests := []struct {
+		name    string
+		numbers Numbers
+		args    args
+		want    bool
+	}{
+		{
+			name:    "Equal",
+			numbers: Numbers{New(1), New(2), New(3)},
+			args: args{
+				n: []int{1, 2, 3},
+			},
+			want: true,
+		},
+		{
+			name:    "Random",
+			numbers: Numbers{New(1), New(2), New(3)},
+			args: args{
+				n: []int{3, 1, 2},
+			},
+			want: false,
+		},
+		{
+			name:    "notEqual",
+			numbers: Numbers{New(1), New(2), New(3)},
+			args: args{
+				n: []int{1, 2},
+			},
+			want: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.numbers.Are(tt.args.n...); got != tt.want {
+				t.Errorf("Numbers.Are() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
