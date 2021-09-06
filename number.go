@@ -122,6 +122,9 @@ func (number *Number) Add(n int) error {
 
 // Sub subtracts n from n in this. See also Int.Increment.
 func (number *Number) Sub(n int) error {
+	if !number.canUpdate(number.n - n) {
+		return fmt.Errorf("next value is expected to be %d", number.next)
+	}
 	if !number.isAllowed(number.n - n) {
 		return fmt.Errorf("unexpected value")
 	}
@@ -145,10 +148,10 @@ func (number *Number) IsNotZero() bool {
 // before, n is checked if allowed to update it or not. it returns nil if
 // allowed otherwise an error.
 func (number *Number) ChangeTo(n int) error {
-	if !number.canUpdate(number.n + n) {
+	if !number.canUpdate(n) {
 		return fmt.Errorf("next value is expected to be %d", number.next)
 	}
-	if !number.isAllowed(number.n + n) {
+	if !number.isAllowed(n) {
 		return fmt.Errorf("unexpected value")
 	}
 	number.prev = number.n
