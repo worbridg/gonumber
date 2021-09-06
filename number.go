@@ -5,6 +5,9 @@ import (
 	"strconv"
 )
 
+// Numbers is a collection of Number.
+type Numbers []Number
+
 // Number is a wrapper of int and provide you code readability in your codes.
 type Number struct {
 	// allowedN holds what numerics must be in `n`.
