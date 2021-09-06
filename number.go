@@ -133,3 +133,16 @@ func (number *Number) IsZero() bool {
 func (number *Number) IsNotZero() bool {
 	return number.n != 0
 }
+
+func (number *Number) ChangeTo(n int) error {
+	if !number.canUpdate(number.n.(int) + n) {
+		return fmt.Errorf("next value is expected to be %d", number.next)
+	}
+	if !number.isAllowed(number.n.(int) + n) {
+		return fmt.Errorf("unexpected value")
+	}
+	number.prev = number.n.(int)
+	number.n = n
+	number.next = 0
+	return nil
+}
