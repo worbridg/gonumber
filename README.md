@@ -22,7 +22,7 @@ func oneOf(numbers gonumber.Numbers) *gonumber.OneOfNumbersState {
 }
 
 func main() {
-	number := gonumber.New(0)
+	number := gonumber.NewInt(0)
 	if number.IsZero() {
 		number.Increment()
 	}
@@ -32,13 +32,13 @@ func main() {
 		// Output: next is expected to be 3
 	}
 
-	number, _ = gonumber.New(2).ShouldBe(1, 2, 3)
+	number, _ = gonumber.NewInt(2).ShouldBe(1, 2, 3)
 	if err := number.Add(2); err != nil {
 		fmt.Println(err)
 		// unexpected value
 	}
 
-	numbers := gonumber.Numbers{gonumber.New(1), gonumber.New(1), gonumber.New(0)}
+	numbers := gonumber.Numbers{gonumber.NewInt(1), gonumber.NewInt(1), gonumber.NewInt(0)}
 	if it, exist := oneOf(numbers).IsZero(); exist {
 		it.WillBe(1)
 		it.ChangeTo(1)
