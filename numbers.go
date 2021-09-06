@@ -85,3 +85,8 @@ func (numbers Numbers) Have(n int) (*Number, bool) {
 	}
 	return nil, false
 }
+
+// AreEmpty returns true if the length of the numbers is 0 otherwise false.
+func (numbers Numbers) AreEmpty() bool {
+	return len(numbers) == 0
+}
