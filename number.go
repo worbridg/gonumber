@@ -174,3 +174,7 @@ func (number *Number) IsLessThan(n int) bool {
 func (number *Number) Equal(n int) bool {
 	return number.n.(int) == n
 }
+
+func (number *Number) Int() int {
+	return number.n.(int)
+}
