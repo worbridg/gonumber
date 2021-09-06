@@ -5,21 +5,21 @@ import (
 )
 
 func TestInt_Is(t *testing.T) {
-	n := New(3)
+	n := NewInt(3)
 	if n.Is(2) {
 		t.Errorf("n must be 3")
 	}
 }
 
 func TestInt_IsNot(t *testing.T) {
-	n := New(3)
+	n := NewInt(3)
 	if n.IsNot(3) {
 		t.Errorf("n must be 3")
 	}
 }
 
 func TestInt_Increment(t *testing.T) {
-	n := New(0)
+	n := NewInt(0)
 	n.Increment()
 	if n.IsNot(1) {
 		t.Errorf("n must be 1")
@@ -47,7 +47,7 @@ func TestInt_Increment(t *testing.T) {
 }
 
 func TestInt_Was(t *testing.T) {
-	n := New(0)
+	n := NewInt(0)
 	n.Increment()
 	if n.Was(1) {
 		t.Errorf("previous n must be 0")
@@ -55,7 +55,7 @@ func TestInt_Was(t *testing.T) {
 }
 
 func TestInt_WasNot(t *testing.T) {
-	n := New(0)
+	n := NewInt(0)
 	n.Increment()
 	if n.WasNot(0) {
 		t.Errorf("previous n must be 0")
@@ -63,7 +63,7 @@ func TestInt_WasNot(t *testing.T) {
 }
 
 func TestInt_Add(t *testing.T) {
-	n := New(0)
+	n := NewInt(0)
 	n.Add(3)
 	if n.IsNot(3) {
 		t.Errorf("n must be 3")
@@ -72,14 +72,14 @@ func TestInt_Add(t *testing.T) {
 	if err := n.Add(2); err == nil {
 		t.Error(err)
 	}
-	n = New(0)
+	n = NewInt(0)
 	n.WillBe(3)
 	if err := n.Add(2); err == nil {
 		t.Error(err)
 	}
 }
 func TestInt_Sub(t *testing.T) {
-	n := New(0)
+	n := NewInt(0)
 	n.Sub(3)
 	if n.IsNot(-3) {
 		t.Errorf("n must be -3")
@@ -102,7 +102,7 @@ func TestNumbers_Are(t *testing.T) {
 	}{
 		{
 			name:    "Equal",
-			numbers: Numbers{New(1), New(2), New(3)},
+			numbers: Numbers{NewInt(1), NewInt(2), NewInt(3)},
 			args: args{
 				n: []int{1, 2, 3},
 			},
@@ -110,7 +110,7 @@ func TestNumbers_Are(t *testing.T) {
 		},
 		{
 			name:    "Random",
-			numbers: Numbers{New(1), New(2), New(3)},
+			numbers: Numbers{NewInt(1), NewInt(2), NewInt(3)},
 			args: args{
 				n: []int{3, 1, 2},
 			},
@@ -118,7 +118,7 @@ func TestNumbers_Are(t *testing.T) {
 		},
 		{
 			name:    "notEqual",
-			numbers: Numbers{New(1), New(2), New(3)},
+			numbers: Numbers{NewInt(1), NewInt(2), NewInt(3)},
 			args: args{
 				n: []int{1, 2},
 			},
@@ -142,12 +142,12 @@ func TestNumbers_AreSame(t *testing.T) {
 	}{
 		{
 			name:    "Same",
-			numbers: Numbers{New(1), New(1), New(1)},
+			numbers: Numbers{NewInt(1), NewInt(1), NewInt(1)},
 			want:    true,
 		},
 		{
 			name:    "NotSame",
-			numbers: Numbers{New(1), New(1), New(2)},
+			numbers: Numbers{NewInt(1), NewInt(1), NewInt(2)},
 			want:    false,
 		},
 	}

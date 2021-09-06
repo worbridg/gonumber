@@ -14,9 +14,19 @@ type Number struct {
 	next     int
 }
 
-// NewInt returns new Number.
-func New(n interface{}) *Number {
-	return &Number{n: n}
+// NewInt returns new Number. return a number if n is numeric otherwise an error.
+func New(n interface{}) (*Number, error) {
+	switch n.(type) {
+	case int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, uintptr:
+		return &Number{n: n}, nil
+	}
+	return nil, fmt.Errorf("n isn't numeric")
+}
+
+// NewInt is a type safe initialization for int.
+func NewInt(n int) *Number {
+	number, _ := New(n)
+	return number
 }
 
 // Is is equal to "=="
