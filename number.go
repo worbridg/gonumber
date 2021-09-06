@@ -172,6 +172,7 @@ func (number *Number) Equal(n int) bool {
 	return number.n == n
 }
 
+// Int returns the number as int.
 func (number *Number) Int() int {
 	return number.n
 }
