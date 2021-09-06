@@ -8,8 +8,16 @@ type NumbersState struct {
 	numbers Numbers
 }
 
+type OneOfNumbersState struct {
+	numbers Numbers
+}
+
 func All(numbers Numbers) *NumbersState {
 	return &NumbersState{numbers: numbers}
+}
+
+func OneOf(numbers Numbers) *OneOfNumbersState {
+	return &OneOfNumbersState{numbers: numbers}
 }
 
 func (ns *NumbersState) Are(n int) bool {
@@ -19,6 +27,15 @@ func (ns *NumbersState) Are(n int) bool {
 		}
 	}
 	return true
+}
+
+func (s *OneOfNumbersState) IsZero() bool {
+	for i := 0; i < len(s.numbers); i++ {
+		if s.numbers[i].IsZero() {
+			return true
+		}
+	}
+	return false
 }
 
 func (numbers Numbers) Are(n ...int) bool {
