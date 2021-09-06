@@ -127,3 +127,7 @@ func (number *Number) Sub(n int) error {
 func (number *Number) IsZero() bool {
 	return number.n == 0
 }
+
+func (number *Number) IsNotZero() bool {
+	return number.n != 0
+}
