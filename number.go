@@ -123,3 +123,7 @@ func (number *Number) Sub(n int) error {
 	number.next = 0
 	return nil
 }
+
+func (number *Number) IsZero() bool {
+	return number.n == 0
+}

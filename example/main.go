@@ -8,7 +8,7 @@ import (
 
 func main() {
 	number := gonumber.New(0)
-	if number.Is(0) {
+	if number.IsZero() {
 		number.Increment()
 	}
 	number.WillBe(3)
