@@ -24,6 +24,15 @@ func (numbers Numbers) AreNot(n ...int) bool {
 	return !numbers.Are(n...)
 }
 
+func (numbers Numbers) AreSame() bool {
+	for i := 0; i < len(numbers); i++ {
+		if numbers[0].n != numbers[i].n {
+			return false
+		}
+	}
+	return true
+}
+
 // Number is a wrapper of int and provide you code readability in your codes.
 type Number struct {
 	// allowedN holds what numerics must be in `n`.

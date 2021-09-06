@@ -133,3 +133,29 @@ func TestNumbers_Are(t *testing.T) {
 		})
 	}
 }
+
+func TestNumbers_AreSame(t *testing.T) {
+	tests := []struct {
+		name    string
+		numbers Numbers
+		want    bool
+	}{
+		{
+			name:    "Same",
+			numbers: Numbers{New(1), New(1), New(1)},
+			want:    true,
+		},
+		{
+			name:    "NotSame",
+			numbers: Numbers{New(1), New(1), New(2)},
+			want:    false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := tt.numbers.AreSame(); got != tt.want {
+				t.Errorf("Numbers.AreSame() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
