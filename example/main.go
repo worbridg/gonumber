@@ -10,6 +10,10 @@ func all(numbers gonumber.Numbers) *gonumber.AllNumbersState {
 	return gonumber.All(numbers)
 }
 
+func oneOf(numbers gonumber.Numbers) *gonumber.OneOfNumbersState {
+	return gonumber.OneOf(numbers)
+}
+
 func main() {
 	number := gonumber.New(0)
 	if number.IsZero() {
@@ -30,5 +34,10 @@ func main() {
 	numbers := gonumber.Numbers{gonumber.New(1), gonumber.New(1)}
 	if all(numbers).Are(1) {
 		fmt.Println("they are same")
+	}
+
+	numbers = append(numbers, gonumber.New(0))
+	if oneOf(numbers).IsZero() {
+		fmt.Println("0 is including")
 	}
 }
