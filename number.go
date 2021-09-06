@@ -124,10 +124,12 @@ func (number *Number) Sub(n int) error {
 	return nil
 }
 
+// IsZero checks if the number is zero or not.
 func (number *Number) IsZero() bool {
 	return number.n == 0
 }
 
+// IsNotZero checks if the number isn't zero or not.
 func (number *Number) IsNotZero() bool {
 	return number.n != 0
 }
