@@ -54,7 +54,7 @@ func (number *Number) IsNot(n int) bool {
 // by ShouldBe(), it also must be obey. cleared both, it return nil.
 func (number *Number) Increment() error {
 	if !number.canUpdate(number.n.(int) + 1) {
-		return fmt.Errorf("next value must be %d", number.next)
+		return fmt.Errorf("next value is expected to be %d", number.next)
 	}
 	if !number.isAllowed(number.n.(int) + 1) {
 		return fmt.Errorf("unexpected value")
