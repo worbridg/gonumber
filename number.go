@@ -36,21 +36,26 @@ func (number *Number) IsNot(n int) bool {
 	return number.n != n
 }
 
-// Increment add 1 to n and holds last value of n in myself.
-// if next value is designated by WillBe(), n+1 must be same to it.
-// if not, returns an error. and more if a value to n is restricted
-// by ShouldBe(), it also must be obey. cleared both, it return nil.
-func (number *Number) Increment() error {
-	if !number.canUpdate(number.n + 1) {
+// changeTo add n to n of the number and holds last value of the number in
+// myself. if next value is designated by WillBe(), they must be same. if not,
+// returns an error. and more if a value to n is restricted by ShouldBe(), it
+// also must be obey. cleared both, it return nil.
+func (number *Number) changeTo(n int) error {
+	if !number.canUpdate(n) {
 		return fmt.Errorf("next value is expected to be %d", number.next)
 	}
-	if !number.isAllowed(number.n + 1) {
+	if !number.isAllowed(n) {
 		return fmt.Errorf("unexpected value")
 	}
 	number.prev = number.n
 	number.next = 0
-	number.n = number.n + 1
+	number.n = n
 	return nil
+}
+
+// Increment add 1 to the number.
+func (number *Number) Increment() error {
+	return number.changeTo(number.n + 1)
 }
 
 // isAllowed always return true if allowedN isn't set.
@@ -108,30 +113,12 @@ func (number *Number) canUpdate(n int) bool {
 
 // Add plus n to n in this. See also Number.Increment.
 func (number *Number) Add(n int) error {
-	if !number.canUpdate(number.n + n) {
-		return fmt.Errorf("next value is expected to be %d", number.next)
-	}
-	if !number.isAllowed(number.n + n) {
-		return fmt.Errorf("unexpected value")
-	}
-	number.prev = number.n
-	number.n = number.n + n
-	number.next = 0
-	return nil
+	return number.changeTo(number.n + n)
 }
 
 // Sub subtracts n from n in this. See also Int.Increment.
 func (number *Number) Sub(n int) error {
-	if !number.canUpdate(number.n - n) {
-		return fmt.Errorf("next value is expected to be %d", number.next)
-	}
-	if !number.isAllowed(number.n - n) {
-		return fmt.Errorf("unexpected value")
-	}
-	number.prev = number.n
-	number.n = number.n - n
-	number.next = 0
-	return nil
+	return number.changeTo(number.n - n)
 }
 
 // IsZero checks if the number is zero or not.
@@ -148,16 +135,7 @@ func (number *Number) IsNotZero() bool {
 // before, n is checked if allowed to update it or not. it returns nil if
 // allowed otherwise an error.
 func (number *Number) ChangeTo(n int) error {
-	if !number.canUpdate(n) {
-		return fmt.Errorf("next value is expected to be %d", number.next)
-	}
-	if !number.isAllowed(n) {
-		return fmt.Errorf("unexpected value")
-	}
-	number.prev = number.n
-	number.n = n
-	number.next = 0
-	return nil
+	return number.changeTo(n)
 }
 
 // IsGreaterThan evaluates "number > n".
