@@ -46,7 +46,7 @@ func (todo *ToDo) Start() error {
 
 func (todo *ToDo) Suspend() error {
 	todo.status.WillBe(TODO)
-	if err := todo.status.Sub(1); err != nil {
+	if err := todo.status.Decrement(); err != nil {
 		return fmt.Errorf("%s isn't doing", todo.text)
 	}
 	fmt.Printf("%s suspend\n", todo.text)
