@@ -232,7 +232,12 @@ func (number *Number) UpTo(n int) Numbers {
 	return numbers
 }
 
-// IsEvent checks if the number is even or not.
+// IsEven checks if the number is even or not.
 func (number *Number) IsEven() bool {
 	return number.n%2 == 0
+}
+
+// IsOdd checks if the number is odd or not.
+func (number *Number) IsOdd() bool {
+	return number.n%2 == 1
 }
