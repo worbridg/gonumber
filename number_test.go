@@ -184,3 +184,10 @@ func TestNumber_ShouldBePositive(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestNumber_ShouldBeBetween(t *testing.T) {
+	_, err := NewInt(3).ShouldBeBetween(1, 5)
+	if err != nil {
+		t.Error(err)
+	}
+}

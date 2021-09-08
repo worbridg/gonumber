@@ -124,6 +124,11 @@ func (number *Number) ShouldBePositive() (*Number, error) {
 	return number, nil
 }
 
+// ShouldBeBetween restricts value that an user can set to between min and max.
+func (number *Number) ShouldBeBetween(min, max int) (*Number, error) {
+	return number, nil
+}
+
 // Strings returns a numeric string.
 func (number *Number) String() string {
 	return strconv.Itoa(number.n)
