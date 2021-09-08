@@ -60,15 +60,15 @@ func (number *Number) Increment() error {
 
 // isAllowed always return true if allowedN isn't set.
 func (number *Number) isAllowed(n int) bool {
-	if len(number.allowedN) > 0 {
-		for i := 0; i < len(number.allowedN); i++ {
-			if number.allowedN[i] == n {
-				return true
-			}
-		}
-		return false
+	if len(number.allowedN) == 0 {
+		return true
 	}
-	return true
+	for i := 0; i < len(number.allowedN); i++ {
+		if number.allowedN[i] == n {
+			return true
+		}
+	}
+	return false
 }
 
 // Was checks if last value is equal to n.
