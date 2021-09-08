@@ -77,10 +77,14 @@ func (number *Number) isAllowed(n int) bool {
 	if number.positive {
 		return n > 0
 	}
-	if len(number.allowedN) == 0 {
+	if number.haveNotAllowedN() {
 		return true
 	}
 	return number.isAllowedToSet(n)
+}
+
+func (number *Number) haveNotAllowedN() bool {
+	return len(number.allowedN) == 0
 }
 
 func (number *Number) isAllowedToSet(n int) bool {
