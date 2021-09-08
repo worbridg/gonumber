@@ -182,16 +182,20 @@ func (number *Number) Between(min, max int) bool {
 	return number.n >= min && number.n <= max
 }
 
+// A safe logic to protect when too long n is supplied unexpectedly.
+func upto(n int) int {
+	if n > MaxUpTo {
+		return MaxUpTo
+	}
+	return n
+}
+
 // UpTo increments the number up to n and returns numbers.
 func (number *Number) UpTo(n int) Numbers {
 	if number.IsGreaterThan(n) {
 		return Numbers{number}
 	}
-	total := n - number.n + 1
-	// A safe logic to protect when too long n is supplied unexpectedly.
-	if total > MaxUpTo {
-		total = MaxUpTo
-	}
+	total := upto(n - number.n + 1)
 	numbers := make(Numbers, total)
 	for i := number.n; i <= n; i++ {
 		numbers[i-number.n] = NewInt(i)
