@@ -193,8 +193,7 @@ func TestNumber_ShouldBeBetween(t *testing.T) {
 	if err := number.ChangeTo(0); err == nil {
 		t.Errorf("the number should be between 1 and 5")
 	}
-	/*
-		if err := number.ChangeTo(4); err != nil {
-			t.Error(err)
-		}*/
+	if err := number.ChangeTo(4); err != nil {
+		t.Error(err)
+	}
 }
