@@ -36,10 +36,8 @@ func (s *AllNumbersState) Are(n int) bool {
 // IsZero checks if there is 0 in numbers or not. it returns true if same
 // otherwise false.
 func (s *OneOfNumbersState) IsZero() (*Number, bool) {
-	for i := 0; i < len(s.numbers); i++ {
-		if s.numbers[i].IsZero() {
-			return s.numbers[i], true
-		}
+	if number, ok := s.numbers.Have(0); ok {
+		return number, ok
 	}
 	return nil, false
 }
