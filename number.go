@@ -75,7 +75,7 @@ func (number *Number) canUpdate(n int) (error, bool) {
 		return fmt.Errorf("next value is expected to be %d", number.next), false
 	}
 	if number.positive {
-		return fmt.Errorf("valeu should be positive"), n > 0
+		return fmt.Errorf("value should be positive"), n > 0
 	}
 	if number.haveNotAllowedN() {
 		return nil, true
