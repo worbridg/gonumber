@@ -197,3 +197,11 @@ func TestNumber_ShouldBeBetween(t *testing.T) {
 		t.Error(err)
 	}
 }
+
+func TestNumber_In(t *testing.T) {
+	numbers := NewInt(1).UpTo(5)
+	number := NewInt(8)
+	if number.In(numbers) {
+		t.Errorf("8 shouldn't be in numbers")
+	}
+}
