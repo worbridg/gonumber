@@ -250,7 +250,7 @@ func (number *Number) In(numbers Numbers) bool {
 	return ok
 }
 
-// IsChanged checks if the number have been changed.
-func (number *Number) IsChanged() bool {
+// HaveBeenChanged checks if the number have been changed.
+func (number *Number) HaveBeenChanged() bool {
 	return number.changed
 }
