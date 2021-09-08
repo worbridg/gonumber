@@ -108,3 +108,8 @@ func (numbers Numbers) String() string {
 	}
 	return strings.Join(s, ",")
 }
+
+// At returns a number at idx in numbers.
+func (numbers Numbers) At(idx int) *Number {
+	return numbers[idx]
+}
