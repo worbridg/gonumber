@@ -42,6 +42,7 @@ func (s *OneOfNumbersState) IsZero() (*Number, bool) {
 	return nil, false
 }
 
+// Is is equivalent to Numbers.Have().
 func (s *OneOfNumbersState) Is(n int) (*Number, bool) {
 	if number, ok := s.numbers.Have(n); ok {
 		return number, ok
@@ -82,6 +83,7 @@ func (numbers Numbers) AreNotSame() bool {
 	return !numbers.AreSame()
 }
 
+// Have checks if numbers contains n or not.
 func (numbers Numbers) Have(n int) (*Number, bool) {
 	for i := 0; i < len(numbers); i++ {
 		if numbers[i].Equal(n) {
