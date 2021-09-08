@@ -212,11 +212,6 @@ func (number *Number) IsNegative() bool {
 	return number.n < 0
 }
 
-// Between checks if the number is in between min and max.
-func (number *Number) Between(min, max int) bool {
-	return number.n >= min && number.n <= max
-}
-
 // A safe logic to protect when too long n is supplied unexpectedly.
 func upto(n int) int {
 	if n > MaxUpTo {
