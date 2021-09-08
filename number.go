@@ -46,8 +46,8 @@ func (number *Number) IsNot(n int) bool {
 // returns an error. and more if a value to n is restricted by ShouldBe(), it
 // also must be obey. cleared both, it return nil.
 func (number *Number) changeTo(n int) error {
-	if !number.canUpdate(n) {
-		return fmt.Errorf("unexpected value")
+	if err, ok := number.canUpdate(n); !ok {
+		return fmt.Errorf("unexpected value: %v", err)
 	}
 	number.set(n)
 	return nil
@@ -70,15 +70,15 @@ func (number *Number) Decrement() error {
 }
 
 // isAllowed checks if the number is allowed to update with n.
-func (number *Number) canUpdate(n int) bool {
+func (number *Number) canUpdate(n int) (error, bool) {
 	if number.next > 0 && number.next != n {
-		return false
+		return fmt.Errorf("next value is expected to be %d", number.next), false
 	}
 	if number.positive {
-		return n > 0
+		return fmt.Errorf("valeu should be positive"), n > 0
 	}
 	if number.haveNotAllowedN() {
-		return true
+		return nil, true
 	}
 	return number.isAllowedToSet(n)
 }
@@ -87,13 +87,13 @@ func (number *Number) haveNotAllowedN() bool {
 	return len(number.allowedN) == 0
 }
 
-func (number *Number) isAllowedToSet(n int) bool {
+func (number *Number) isAllowedToSet(n int) (error, bool) {
 	for i := 0; i < len(number.allowedN); i++ {
 		if number.allowedN[i] == n {
-			return true
+			return nil, true
 		}
 	}
-	return false
+	return fmt.Errorf("%d isn't allowed to set", n), false
 }
 
 // Was checks if last value is equal to n.
