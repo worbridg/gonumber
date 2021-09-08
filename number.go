@@ -5,6 +5,10 @@ import (
 	"strconv"
 )
 
+var (
+	MaxUpTo = 100
+)
+
 // Number is a wrapper of int and provide you code readability in your codes.
 type Number struct {
 	// allowedN holds what numerics must be in `n`.
@@ -185,8 +189,8 @@ func (number *Number) UpTo(n int) Numbers {
 	}
 	total := n - number.n + 1
 	// A safe logic to protect when too long n is supplied unexpectedly.
-	if total > 100 {
-		total = 100
+	if total > MaxUpTo {
+		total = MaxUpTo
 	}
 	numbers := make(Numbers, total)
 	for i := number.n; i <= n; i++ {
