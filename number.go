@@ -77,14 +77,10 @@ func (number *Number) canUpdate(n int) (error, bool) {
 	if number.positive {
 		return fmt.Errorf("value should be positive"), n > 0
 	}
-	if number.haveNotAllowedN() {
+	if len(number.allowedN) == 0 {
 		return nil, true
 	}
 	return number.isAllowedToSet(n)
-}
-
-func (number *Number) haveNotAllowedN() bool {
-	return len(number.allowedN) == 0
 }
 
 func (number *Number) isAllowedToSet(n int) (error, bool) {
