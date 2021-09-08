@@ -11,6 +11,8 @@ var (
 
 // Number is a wrapper of int and provide you code readability in your codes.
 type Number struct {
+	min      int
+	max      int
 	positive bool
 	// allowedN holds what numerics must be in `n`.
 	allowedN []int
@@ -77,6 +79,9 @@ func (number *Number) canUpdate(n int) (error, bool) {
 	if number.positive {
 		return fmt.Errorf("value should be positive"), n > 0
 	}
+	if number.max-number.min != 0 {
+		return fmt.Errorf("the number should be between %d and %d", number.min, number.max), number.min <= n && n <= number.max
+	}
 	if len(number.allowedN) == 0 {
 		return nil, true
 	}
@@ -126,6 +131,8 @@ func (number *Number) ShouldBePositive() (*Number, error) {
 
 // ShouldBeBetween restricts value that an user can set to between min and max.
 func (number *Number) ShouldBeBetween(min, max int) (*Number, error) {
+	number.min = min
+	number.max = max
 	return number, nil
 }
 
