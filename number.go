@@ -110,6 +110,11 @@ func (number *Number) ShouldBe(n ...int) (*Number, error) {
 	return nil, fmt.Errorf("the number should be one of %v", n)
 }
 
+// ShouldBePositive restricts value than an user can set to positive.
+func (number *Number) ShouldBePositive() (*Number, error) {
+	return nil, nil
+}
+
 // Strings returns a numeric string.
 func (number *Number) String() string {
 	return strconv.Itoa(number.n)

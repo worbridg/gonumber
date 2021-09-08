@@ -171,3 +171,10 @@ func TestNumber_UpTo(t *testing.T) {
 		t.Errorf("numbers must be 3")
 	}
 }
+
+func TestNumber_ShouldBePositive(t *testing.T) {
+	_, err := NewInt(3).ShouldBePositive()
+	if err != nil {
+		t.Error(err)
+	}
+}
