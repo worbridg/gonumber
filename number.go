@@ -58,6 +58,11 @@ func (number *Number) Increment() error {
 	return number.changeTo(number.n + 1)
 }
 
+// Decrement subtract 1 from the number.
+func (number *Number) Decrement() error {
+	return number.changeTo(number.n - 1)
+}
+
 // isAllowed always return true if allowedN isn't set.
 func (number *Number) isAllowed(n int) bool {
 	if len(number.allowedN) == 0 {
