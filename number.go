@@ -268,3 +268,8 @@ func (number *Number) Copy(n *Number) *Number {
 		changed:  false,
 	}
 }
+
+// Rollback swaps current value and previous one.
+func (number *Number) Rollback() {
+	number.prev, number.n = number.n, number.prev
+}
