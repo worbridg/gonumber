@@ -183,7 +183,12 @@ func (number *Number) UpTo(n int) Numbers {
 	if number.IsGreaterThan(n) {
 		return Numbers{number}
 	}
-	numbers := make(Numbers, n-number.n+1)
+	total := n - number.n + 1
+	// A safe logic to protect when too long n is supplied unexpectedly.
+	if total > 100 {
+		total = 100
+	}
+	numbers := make(Numbers, total)
 	for i := number.n; i <= n; i++ {
 		numbers[i-number.n] = NewInt(i)
 	}
