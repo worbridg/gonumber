@@ -72,7 +72,7 @@ func (number *Number) Decrement() error {
 	return number.changeTo(number.n - 1)
 }
 
-// isAllowed always return true if allowedN isn't set.
+// isAllowed checks if the number is allowed to update with n.
 func (number *Number) isAllowed(n int) bool {
 	if number.positive {
 		return n > 0
