@@ -22,6 +22,18 @@ func (todos ToDoList) Statuses() gonumber.Numbers {
 	return numbers
 }
 
+func (todos ToDoList) StartAll() {
+	for i := 0; i < len(todos); i++ {
+		todos[i].Start()
+	}
+}
+
+func (todos ToDoList) DoneAll() {
+	for i := 0; i < len(todos); i++ {
+		todos[i].Done()
+	}
+}
+
 type ToDo struct {
 	status *gonumber.Number
 	text   string
@@ -78,12 +90,12 @@ func main() {
 	todo.Suspend()
 	todo.Start()
 	todo.Done()
-	todos := ToDoList{todo, NewToDo("todo2")}
+	todos := ToDoList{todo, NewToDo("todo2"), NewToDo("todo3")}
 	if _, exist := oneOf(todos).Is(TODO); exist {
 		fmt.Println("there are a todo in TODO")
 	}
-	todos[1].Start()
-	todos[1].Done()
+	todos.StartAll()
+	todos.DoneAll()
 	if all(todos).Are(DONE) {
 		fmt.Println("all tasks done")
 	}
