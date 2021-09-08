@@ -19,6 +19,7 @@ type Number struct {
 	n        int
 	prev     int
 	next     int
+	changed  bool
 }
 
 // NewInt returns new Number. return a number if n is numeric otherwise an error.
@@ -56,6 +57,7 @@ func (number *Number) changeTo(n int) error {
 }
 
 func (number *Number) update(n int) {
+	number.changed = true
 	number.prev = number.n
 	number.next = 0
 	number.n = n
@@ -246,4 +248,9 @@ func (number *Number) IsOdd() bool {
 func (number *Number) In(numbers Numbers) bool {
 	_, ok := numbers.Have(number.n)
 	return ok
+}
+
+// IsChanged checks if the number have been changed.
+func (number *Number) IsChanged() bool {
+	return number.changed
 }
