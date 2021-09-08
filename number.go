@@ -47,9 +47,6 @@ func (number *Number) IsNot(n int) bool {
 // also must be obey. cleared both, it return nil.
 func (number *Number) changeTo(n int) error {
 	if !number.canUpdate(n) {
-		return fmt.Errorf("next value is expected to be %d", number.next)
-	}
-	if !number.isAllowed(n) {
 		return fmt.Errorf("unexpected value")
 	}
 	number.set(n)
@@ -73,7 +70,10 @@ func (number *Number) Decrement() error {
 }
 
 // isAllowed checks if the number is allowed to update with n.
-func (number *Number) isAllowed(n int) bool {
+func (number *Number) canUpdate(n int) bool {
+	if number.next > 0 && number.next != n {
+		return false
+	}
 	if number.positive {
 		return n > 0
 	}
@@ -136,10 +136,6 @@ func (number *Number) String() string {
 // Strings returns int type n.
 func (number *Number) Number() int {
 	return number.n
-}
-
-func (number *Number) canUpdate(n int) bool {
-	return number.next == 0 || number.next == n
 }
 
 // Add plus n to n in this. See also Number.Increment.
