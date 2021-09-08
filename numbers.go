@@ -74,7 +74,7 @@ func (numbers Numbers) AreNot(n ...int) bool {
 // AreSame checks if all numbers are same or not.
 func (numbers Numbers) AreSame() bool {
 	for i := 0; i < len(numbers); i++ {
-		if numbers[0].n != numbers[i].n {
+		if !numbers[0].Equal(numbers[i].n) {
 			return false
 		}
 	}
