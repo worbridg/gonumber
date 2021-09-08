@@ -231,3 +231,8 @@ func (number *Number) UpTo(n int) Numbers {
 	}
 	return numbers
 }
+
+// IsEvent checks if the number is even or not.
+func (number *Number) IsEven() bool {
+	return number.n%2 == 0
+}
