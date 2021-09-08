@@ -254,3 +254,17 @@ func (number *Number) In(numbers Numbers) bool {
 func (number *Number) HaveBeenChanged() bool {
 	return number.changed
 }
+
+// Copy copys the number to new one without changed status.
+func (number *Number) Copy(n *Number) *Number {
+	return &Number{
+		max:      number.max,
+		min:      number.min,
+		positive: number.positive,
+		allowedN: number.allowedN,
+		n:        number.n,
+		prev:     number.prev,
+		next:     number.next,
+		changed:  false,
+	}
+}
