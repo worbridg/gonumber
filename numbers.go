@@ -113,3 +113,13 @@ func (numbers Numbers) String() string {
 func (numbers Numbers) At(idx int) *Number {
 	return numbers[idx]
 }
+
+// ChangeTo changes all numbers to n.
+func (numbers Numbers) ChangeTo(n int) error {
+	for i := 0; i < len(numbers); i++ {
+		if err := numbers[i].ChangeTo(n); err != nil {
+			return err
+		}
+	}
+	return nil
+}
