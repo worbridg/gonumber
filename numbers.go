@@ -45,10 +45,8 @@ func (s *OneOfNumbersState) IsZero() (*Number, bool) {
 }
 
 func (s *OneOfNumbersState) Is(n int) (*Number, bool) {
-	for i := 0; i < len(s.numbers); i++ {
-		if s.numbers[i].Equal(n) {
-			return s.numbers[i], true
-		}
+	if number, ok := s.numbers.Have(n); ok {
+		return number, ok
 	}
 	return nil, false
 }
