@@ -1,5 +1,7 @@
 package gonumber
 
+import "strings"
+
 // Numbers is a collection of Number.
 type Numbers []*Number
 
@@ -96,4 +98,13 @@ func (numbers Numbers) Have(n int) (*Number, bool) {
 // AreNothing returns true if the length of the numbers is 0 otherwise false.
 func (numbers Numbers) AreNothing() bool {
 	return len(numbers) == 0
+}
+
+// Strings returns a string separated by conma.
+func (numbers Numbers) String() string {
+	s := make([]string, len(numbers))
+	for i := 0; i < len(numbers); i++ {
+		s[i] = numbers[i].String()
+	}
+	return strings.Join(s, ",")
 }

@@ -35,3 +35,10 @@ func TestNumbers_Have(t *testing.T) {
 		t.Errorf("4 isn't expected")
 	}
 }
+
+func TestNumbers_String(t *testing.T) {
+	numbers := Numbers{NewInt(1), NewInt(2), NewInt(3)}
+	if numbers.String() != "1,2,3" {
+		t.Errorf("strings must be 1,2,3")
+	}
+}
