@@ -205,3 +205,12 @@ func TestNumber_In(t *testing.T) {
 		t.Errorf("8 shouldn't be in numbers")
 	}
 }
+
+func TestEvery(t *testing.T) {
+	numbers := NewInt(0).UpTo(3)
+	n := NewInt(1)
+	numbers = append(numbers, n)
+	if Every(n).In(numbers).AreNot(1, 1) {
+		t.Errorf("numbers should be 1 and 1")
+	}
+}

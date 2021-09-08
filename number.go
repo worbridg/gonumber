@@ -273,3 +273,22 @@ func (number *Number) Copy(n *Number) *Number {
 func (number *Number) Rollback() {
 	number.prev, number.n = number.n, number.prev
 }
+
+type EveryNumberState struct {
+	number *Number
+}
+
+func Every(number *Number) *EveryNumberState {
+	return &EveryNumberState{number: number}
+}
+
+// every doing in todoLists
+func (s *EveryNumberState) In(numbers Numbers) Numbers {
+	everyNumbers := Numbers{}
+	for i := 0; i < len(numbers); i++ {
+		if numbers.At(i).Equal(s.number.Int()) {
+			everyNumbers = append(everyNumbers, numbers.At(i))
+		}
+	}
+	return everyNumbers
+}
