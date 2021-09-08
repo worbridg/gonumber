@@ -11,6 +11,7 @@ var (
 
 // Number is a wrapper of int and provide you code readability in your codes.
 type Number struct {
+	positive bool
 	// allowedN holds what numerics must be in `n`.
 	allowedN []int
 	n        int
@@ -73,6 +74,9 @@ func (number *Number) Decrement() error {
 
 // isAllowed always return true if allowedN isn't set.
 func (number *Number) isAllowed(n int) bool {
+	if number.positive {
+		return n > 0
+	}
 	if len(number.allowedN) == 0 {
 		return true
 	}
@@ -112,7 +116,8 @@ func (number *Number) ShouldBe(n ...int) (*Number, error) {
 
 // ShouldBePositive restricts value than an user can set to positive.
 func (number *Number) ShouldBePositive() (*Number, error) {
-	return nil, nil
+	number.positive = true
+	return number, nil
 }
 
 // Strings returns a numeric string.

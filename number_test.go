@@ -173,8 +173,11 @@ func TestNumber_UpTo(t *testing.T) {
 }
 
 func TestNumber_ShouldBePositive(t *testing.T) {
-	_, err := NewInt(3).ShouldBePositive()
+	number, err := NewInt(3).ShouldBePositive()
 	if err != nil {
 		t.Error(err)
+	}
+	if err := number.ChangeTo(-1); err == nil {
+		t.Errorf("the number should be positive")
 	}
 }
