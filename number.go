@@ -80,6 +80,10 @@ func (number *Number) isAllowed(n int) bool {
 	if len(number.allowedN) == 0 {
 		return true
 	}
+	return number.haveAllowedN(n)
+}
+
+func (number *Number) haveAllowedN(n int) bool {
 	for i := 0; i < len(number.allowedN); i++ {
 		if number.allowedN[i] == n {
 			return true

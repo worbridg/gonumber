@@ -180,4 +180,7 @@ func TestNumber_ShouldBePositive(t *testing.T) {
 	if err := number.ChangeTo(-1); err == nil {
 		t.Errorf("the number should be positive")
 	}
+	if err := number.ChangeTo(5); err != nil {
+		t.Error(err)
+	}
 }
