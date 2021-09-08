@@ -26,7 +26,7 @@ func OneOf(numbers Numbers) *OneOfNumbersState {
 // false.
 func (s *AllNumbersState) Are(n int) bool {
 	for i := 0; i < len(s.numbers); i++ {
-		if s.numbers[i].n != n {
+		if !s.numbers[i].Equal(n) {
 			return false
 		}
 	}
