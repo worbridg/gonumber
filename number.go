@@ -195,8 +195,7 @@ func (number *Number) UpTo(n int) Numbers {
 	if number.IsGreaterThan(n) {
 		return Numbers{number}
 	}
-	total := upto(n - number.n + 1)
-	numbers := make(Numbers, total)
+	numbers := make(Numbers, upto(n-number.n+1))
 	for i := number.n; i <= n; i++ {
 		numbers[i-number.n] = NewInt(i)
 	}
