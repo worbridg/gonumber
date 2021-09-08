@@ -51,10 +51,14 @@ func (number *Number) changeTo(n int) error {
 	if !number.isAllowed(n) {
 		return fmt.Errorf("unexpected value")
 	}
+	number.set(n)
+	return nil
+}
+
+func (number *Number) set(n int) {
 	number.prev = number.n
 	number.next = 0
 	number.n = n
-	return nil
 }
 
 // Increment add 1 to the number.
