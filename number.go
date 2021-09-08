@@ -49,11 +49,11 @@ func (number *Number) changeTo(n int) error {
 	if err, ok := number.canUpdate(n); !ok {
 		return fmt.Errorf("unexpected value: %v", err)
 	}
-	number.set(n)
+	number.update(n)
 	return nil
 }
 
-func (number *Number) set(n int) {
+func (number *Number) update(n int) {
 	number.prev = number.n
 	number.next = 0
 	number.n = n
