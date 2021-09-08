@@ -241,3 +241,9 @@ func (number *Number) IsEven() bool {
 func (number *Number) IsOdd() bool {
 	return number.n%2 == 1
 }
+
+// In checks if the number is in numbers.
+func (number *Number) In(numbers Numbers) bool {
+	_, ok := numbers.Have(number.n)
+	return ok
+}
