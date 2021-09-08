@@ -80,12 +80,21 @@ func (number *Number) canUpdate(n int) (error, bool) {
 		return fmt.Errorf("value should be positive"), n > 0
 	}
 	if number.max-number.min != 0 {
-		return fmt.Errorf("the number should be between %d and %d", number.min, number.max), number.min <= n && n <= number.max
+		return fmt.Errorf("the number should be between %d and %d", number.min, number.max), between(n, number.min, number.max)
 	}
 	if len(number.allowedN) == 0 {
 		return nil, true
 	}
 	return number.isAllowedToSet(n)
+}
+
+func between(n, min, max int) bool {
+	return min <= n && n <= max
+}
+
+// IsBetween checks if the number is between min and max.
+func (number *Number) IsBetween(min, max int) bool {
+	return between(number.n, min, max)
 }
 
 func (number *Number) isAllowedToSet(n int) (error, bool) {
