@@ -156,12 +156,12 @@ func (number *Number) IsGreaterThan(n int) bool {
 	return number.n > n
 }
 
-// IsGreaterThan evaluates "number < n".
+// IsLessThan evaluates "number < n".
 func (number *Number) IsLessThan(n int) bool {
 	return number.n < n
 }
 
-// IsGreaterThan evaluates "number == n".
+// Equal evaluates "number == n".
 func (number *Number) Equal(n int) bool {
 	return number.n == n
 }
